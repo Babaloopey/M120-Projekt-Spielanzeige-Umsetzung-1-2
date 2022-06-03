@@ -1,0 +1,9 @@
+﻿<Application x:Class="M120_226B_Projekt_Views.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:M120_226B_Projekt_Views"
+             StartupUri="Kontrollfenster.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
