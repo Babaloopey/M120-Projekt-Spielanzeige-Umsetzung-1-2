@@ -7,12 +7,13 @@ using static Umsetzung_III.Actions;
 
 namespace Umsetzung_III
 {
-    public class StrafenCommand : CommandBase
+    // Command, der je Nach Strafe und Store beim jeweiligen Team eine Strafe beginnt
+    internal class StrafenCommand : CommandBase
     {
-        Strafe strafe;
-        StrafenStore strafenStore;
+        private readonly Strafe strafe;
+        private readonly StrafenStore strafenStore;
 
-        public StrafenCommand(Strafe strafe, StrafenStore strafenStore)
+        public StrafenCommand(StrafenStore strafenStore, Strafe strafe)
         {
             this.strafe = strafe;
             this.strafenStore = strafenStore;

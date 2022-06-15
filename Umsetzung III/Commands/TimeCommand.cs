@@ -7,6 +7,7 @@ using static Umsetzung_III.Actions;
 
 namespace Umsetzung_III
 {
+    // Command, der je nach ZeitAktion die Spielzeit des TimerStores beeinflusst
     internal class TimeCommand : CommandBase
     {
         private readonly TimerStore timerStore;
@@ -16,7 +17,6 @@ namespace Umsetzung_III
         {
             this.timerStore = timerStore;
             this.zeitAktion = zeitAktion;
-
         }
 
         public override void Execute(object? parameter)
@@ -32,9 +32,7 @@ namespace Umsetzung_III
                 case ZeitAktion.Reset:
                     timerStore.Reset();
                     break;
-
             }
-
         }
     }
 }

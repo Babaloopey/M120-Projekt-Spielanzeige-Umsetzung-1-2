@@ -17,7 +17,6 @@ namespace Umsetzung_III
         public string strafzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
 
         public bool ButtonVisibilityStrafe;
-        public bool ButtonVisibilityReset;
 
         public event Action OnStrafzeitChanged;
         public event Action OnButtonVisibilityChanged;
@@ -32,8 +31,6 @@ namespace Umsetzung_III
             minute = 0;
 
             ButtonVisibilityStrafe = true;
-            ButtonVisibilityReset = false;
-
         }
         public void Start(Strafe strafe)
         {
@@ -53,7 +50,6 @@ namespace Umsetzung_III
             StrafzeitChanged();
 
             ButtonVisibilityStrafe = false;
-            ButtonVisibilityReset = true;
             ButtonVisibilityChanged();
         }
 
@@ -80,7 +76,6 @@ namespace Umsetzung_III
             StrafzeitChanged();
 
             ButtonVisibilityStrafe = true;
-            ButtonVisibilityReset = false;
             ButtonVisibilityChanged();
         }
 

@@ -17,7 +17,6 @@ namespace Umsetzung_III
         private int duration;
 
         public bool ButtonVisibilityStart;
-        public bool ButtonVisibilityStop;
 
 
         public string spielzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
@@ -38,7 +37,6 @@ namespace Umsetzung_III
             minute = this.duration;
 
             ButtonVisibilityStart = true;
-            ButtonVisibilityStop = false;
             ButtonVisibilityChanged();
         }
         public void Start()
@@ -48,7 +46,6 @@ namespace Umsetzung_III
             SpielzeitChanged();
 
             ButtonVisibilityStart = false;
-            ButtonVisibilityStop = true;
             ButtonVisibilityChanged();
         }
         public void Stop()
@@ -58,7 +55,6 @@ namespace Umsetzung_III
             SpielzeitChanged();
 
             ButtonVisibilityStart = true;
-            ButtonVisibilityStop = false;
             ButtonVisibilityChanged();
         }
         public void Reset()
@@ -69,7 +65,6 @@ namespace Umsetzung_III
             SpielzeitChanged();
 
             ButtonVisibilityStart = true;
-            ButtonVisibilityStop = false;
             ButtonVisibilityChanged();
         }
 

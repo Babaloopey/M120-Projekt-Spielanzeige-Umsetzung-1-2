@@ -25,6 +25,14 @@ namespace Umsetzung_III
             this.Halbzeit = 1;
 
         }
+        public void ResetModel()
+        {
+            this.HeimTeamName = "Heim";
+            this.GastTeamName = "Gast";
+            this.HeimTeamScore = 0;
+            this.GastTeamScore = 0;
+            this.Halbzeit = 1;
+        }
 
     }
 }

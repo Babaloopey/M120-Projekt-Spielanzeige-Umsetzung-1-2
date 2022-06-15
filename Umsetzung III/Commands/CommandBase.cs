@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace Umsetzung_III
 {
+    // Abstrakte Blueprintklasse fuer das einfachere Erstellen von CommandKlassen 
     public abstract class CommandBase : ICommand
     {
         public event EventHandler? CanExecuteChanged;
@@ -17,11 +18,5 @@ namespace Umsetzung_III
         }
 
         public abstract void Execute(object? parameter);
-
-        protected void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
-        }
-        
     }
 }

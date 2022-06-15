@@ -14,26 +14,25 @@ namespace Umsetzung_III
 {
     public class ViewModel : ViewModelBase
     {
+        // MemberVariablen
         private readonly Model spielanzeige;
         private readonly TimerStore timerStore;
-        public readonly StrafenStore strafenHeim;
-        public readonly StrafenStore strafenGast;
+        private readonly StrafenStore strafenHeim;
+        private readonly StrafenStore strafenGast;
 
+        // Properties, die von der View abgefragt werden, um Buttons zu verstecken/ anzuzeigen
         public bool ButtonVisibilityStart => timerStore.ButtonVisibilityStart;
-        public bool ButtonVisibilityStop => timerStore.ButtonVisibilityStop;
+        public bool ButtonVisibilityStop => !timerStore.ButtonVisibilityStart;
 
         public bool ButtonVisibilityHeimStrafe => strafenHeim.ButtonVisibilityStrafe;
-        public bool ButtonVisibilityHeimReset => strafenHeim.ButtonVisibilityReset;
+        public bool ButtonVisibilityHeimReset => !strafenHeim.ButtonVisibilityStrafe;
         public bool ButtonVisibilityGastStrafe => strafenGast.ButtonVisibilityStrafe;
-        public bool ButtonVisibilityGastReset => strafenGast.ButtonVisibilityReset;
+        public bool ButtonVisibilityGastReset => !strafenGast.ButtonVisibilityStrafe;
 
-
-
-
+        // Properties, die von der View abgefragt werden, um Informationen darzustellen
         public string Spielzeit
             { get { return timerStore.spielzeit; }
         }
-
         public string HeimTeamStrafe
         {
             get { return strafenHeim.strafzeit; }
@@ -42,7 +41,6 @@ namespace Umsetzung_III
         {
             get { return strafenGast.strafzeit; }
         }
-
         public int Halbzeit
         {
             get { return spielanzeige.Halbzeit; }
@@ -52,12 +50,9 @@ namespace Umsetzung_III
                 {
                     spielanzeige.Halbzeit = value;
                     OnPropertyChanged("Halbzeit");
-
-
                 }
             }
         }
-
         public string HeimTeamName
         {
             get { return spielanzeige.HeimTeamName; }
@@ -70,7 +65,6 @@ namespace Umsetzung_III
                 }
             }
         }
-
         public string GastTeamName
         {
             get { return spielanzeige.GastTeamName; }
@@ -83,7 +77,6 @@ namespace Umsetzung_III
                 }
             }
         }
-
         public int GastTeamScore
         {
             get { return spielanzeige.GastTeamScore; }
@@ -96,7 +89,6 @@ namespace Umsetzung_III
                 }
             }
         }
-
         public int HeimTeamScore
         {
             get { return spielanzeige.HeimTeamScore; }
@@ -109,6 +101,8 @@ namespace Umsetzung_III
                 }
             }
         }
+
+        // Definition der Buttons der Views
         public ICommand HeimScoreUp { get; }
         public ICommand HeimScoreDown { get; }
         public ICommand GastScoreUp { get; }
@@ -129,22 +123,32 @@ namespace Umsetzung_III
         public ICommand GastStrafeZehn { get; }
         public ICommand GastStrafeReset { get; }
 
-
-
+        // Zuruecksetzen des gesamten ViewModels auf den Anfangszustand
+        public void ResetViewModel()
+        {
+            this.spielanzeige.ResetModel();
+            this.timerStore.Reset();
+            this.strafenGast.Reset();
+            this.strafenHeim.Reset();
+            OnPropertyChanged("HeimTeamScore");
+            OnPropertyChanged("GastTeamScore");
+            OnPropertyChanged("HeimTeamName");
+            OnPropertyChanged("GastTeamName");
+        }
 
         public ViewModel()
         {
+            // Initialisierung des Models und der Stores
             spielanzeige = new Model();
             this.timerStore = new TimerStore(20, this);
             this.strafenGast = new StrafenStore();
             this.strafenHeim = new StrafenStore();
 
-
+            // EventBinding
             this.timerStore.OnSpielzeitChanged += TimerStore_SpielzeitChanged;
             this.timerStore.OnButtonVisibilityChanged += TimerStore_ButtonVisibilityChanged;
             this.timerStore.OnZeitGestoppt += TimerStore_ZeitGestoppt;
             this.timerStore.OnZeitGestartet += TimerStore_ZeitGestartet;
-
 
             this.strafenHeim.OnStrafzeitChanged += strafenHeim_StrafzeitChanged;
             this.strafenHeim.OnButtonVisibilityChanged += StrafenHeim_ButtonVisibilityChanged;
@@ -152,31 +156,35 @@ namespace Umsetzung_III
             this.strafenGast.OnStrafzeitChanged += strafenGast_StrafzeitChanged;
             this.strafenGast.OnButtonVisibilityChanged += StrafenGast_ButtonVisibilityChanged;
 
-
-
+            // Zuteilung fuer Buttons
+            // Buttons fuer die Kontrolle des Punktestandes
             GastScoreUp = new ScoreCommand(this, Team.Gast, StandVeraenderung.Hoch);
             GastScoreDown =new ScoreCommand(this, Team.Gast, StandVeraenderung.Runter);
             HeimScoreUp = new ScoreCommand(this, Team.Heim, StandVeraenderung.Hoch); 
             HeimScoreDown = new ScoreCommand(this, Team.Heim, StandVeraenderung.Runter);
 
+            // Buttons fuer die Kontrolle der Spielzeit
             StartTime = new TimeCommand(this.timerStore, ZeitAktion.Start);
             StopTime = new TimeCommand(this.timerStore, ZeitAktion.Stop);
             ResetTime = new TimeCommand(this.timerStore, ZeitAktion.Reset);
 
-            GastStrafeZwei = new StrafenCommand(Strafe.Zwei, this.strafenGast);
-            GastStrafeFuenf = new StrafenCommand(Strafe.Fuenf, this.strafenGast);
-            GastStrafeZehn = new StrafenCommand(Strafe.Zehn, this.strafenGast);
-            GastStrafeReset = new StrafenCommand(Strafe.Reset, this.strafenGast);
+            // Buttons fuer die Kontrolle der Strafen: Gast
+            GastStrafeZwei = new StrafenCommand( this.strafenGast, Strafe.Zwei);
+            GastStrafeFuenf = new StrafenCommand( this.strafenGast, Strafe.Fuenf);
+            GastStrafeZehn = new StrafenCommand(this.strafenGast, Strafe.Zehn);
+            GastStrafeReset = new StrafenCommand(this.strafenGast, Strafe.Reset);
 
-            HeimStrafeZwei = new StrafenCommand(Strafe.Zwei, this.strafenHeim);
-            HeimStrafeFuenf = new StrafenCommand(Strafe.Fuenf, this.strafenHeim);
-            HeimStrafeZehn = new StrafenCommand(Strafe.Zehn, this.strafenHeim);
-            HeimStrafeReset = new StrafenCommand(Strafe.Reset, this.strafenHeim);
+            // Buttons fuer die Kontrolle der Strafen: Heim
+            HeimStrafeZwei = new StrafenCommand(this.strafenHeim, Strafe.Zwei);
+            HeimStrafeFuenf = new StrafenCommand(this.strafenHeim, Strafe.Fuenf);
+            HeimStrafeZehn = new StrafenCommand(this.strafenHeim, Strafe.Zehn);
+            HeimStrafeReset = new StrafenCommand(this.strafenHeim, Strafe.Reset);
 
-
-
+            // Button um das ViewModel zurueckzusetzen
+            ResetAll = new ResetAllCommand(this);
         }
 
+        // Funktionen, die an die Events der Stores gebunden sind: Im Konstruktor verlinkt
         private void TimerStore_SpielzeitChanged()
         {
             OnPropertyChanged("Spielzeit");
@@ -197,11 +205,11 @@ namespace Umsetzung_III
             strafenGast.Resume();
 
         }
+
         private void strafenHeim_StrafzeitChanged()
         {
             OnPropertyChanged("HeimTeamStrafe");
         }
-
         private void StrafenHeim_ButtonVisibilityChanged()
         {
                 OnPropertyChanged("ButtonVisibilityHeimStrafe");
@@ -217,7 +225,5 @@ namespace Umsetzung_III
             OnPropertyChanged("ButtonVisibilityGastStrafe");
             OnPropertyChanged("ButtonVisibilityGastReset");
         }
-
-
     }
 }
