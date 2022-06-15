@@ -21,7 +21,6 @@ namespace Umsetzung_III
     public partial class Kontrollfenster : Window
     {
         private ViewModel viewModel;
-        private TimerStore timerStore;
         public Kontrollfenster()
         {
             InitializeComponent();
@@ -29,7 +28,6 @@ namespace Umsetzung_III
             DataContext = viewModel;
 
             ShowSpielanzeige();
-
         }
 
         private void ShowSpielanzeige()

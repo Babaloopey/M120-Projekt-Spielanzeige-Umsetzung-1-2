@@ -52,7 +52,6 @@ namespace Umsetzung_III
         {
             timer.Stop();
             ZeitGestoppt();
-            SpielzeitChanged();
 
             ButtonVisibilityStart = true;
             ButtonVisibilityChanged();
@@ -99,7 +98,6 @@ namespace Umsetzung_III
                 this.Reset();
                 viewModel.Halbzeit += 1;
             };
-            
         }
 
         private void SpielzeitChanged()

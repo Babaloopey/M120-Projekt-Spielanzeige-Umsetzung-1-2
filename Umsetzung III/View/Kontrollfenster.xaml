@@ -33,25 +33,25 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0"
-                   FontSize="70"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                   HorizontalAlignment="Center"
-                   Text="{Binding HeimTeamName, UpdateSourceTrigger=PropertyChanged}"/>
+                       FontSize="70"
+                       VerticalAlignment="Center"                   
+                       Foreground="#2D2D2D"
+                       HorizontalAlignment="Center"
+                       Text="{Binding HeimTeamName, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Grid.Column="1"
-                   FontSize="150"
-                   VerticalAlignment="Center"
-                   Foreground="#2D2D2D"
-                   HorizontalAlignment="Center"
-                   Text="{Binding Halbzeit}"/>
+                       FontSize="150"
+                       VerticalAlignment="Center"
+                       Foreground="#2D2D2D"
+                       HorizontalAlignment="Center"
+                       Text="{Binding Halbzeit}"/>
 
                     <TextBox Grid.Column="2"
-                   FontSize="70"
-                   VerticalAlignment="Center"
-                   Foreground="#2D2D2D"
-                   HorizontalAlignment="Center"
-                   Text="{Binding GastTeamName, UpdateSourceTrigger=PropertyChanged}"/>
+                       FontSize="70"
+                       VerticalAlignment="Center"
+                       Foreground="#2D2D2D"
+                       HorizontalAlignment="Center"
+                       Text="{Binding GastTeamName, UpdateSourceTrigger=PropertyChanged}"/>
 
                 </Grid>
 
@@ -80,8 +80,8 @@
                             Content="+ (W)"
                             Foreground="#2D2D2D"
                             FontSize="50"
-                            Command="{Binding HeimScoreUp}"
-                                />
+                            Command="{Binding HeimScoreUp}"/>
+
 
                         <Button x:Name="HeimDown"
                             Grid.Row="1"
@@ -93,20 +93,20 @@
                             Command="{Binding HeimScoreDown}"/>
 
                         <TextBlock Grid.Column="1"
-                   FontSize="100"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                               Margin="20"
-                   HorizontalAlignment="Left"
-                   Text="{Binding HeimTeamScore}"/>
+                           FontSize="100"
+                           VerticalAlignment="Center"                   
+                           Foreground="#2D2D2D"
+                           Margin="20"
+                           HorizontalAlignment="Left"
+                           Text="{Binding HeimTeamScore}"/>
 
                         <TextBlock Grid.Column="1"
-                               Grid.Row="1" 
-                   FontSize="50"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                              Margin="20"
-                   HorizontalAlignment="Left">Heim</TextBlock>
+                           Grid.Row="1" 
+                           FontSize="50"
+                           VerticalAlignment="Center"                   
+                           Foreground="#2D2D2D"
+                           Margin="20"
+                           HorizontalAlignment="Left">Heim</TextBlock>
 
                     </Grid>
 
@@ -118,13 +118,13 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock
-                            Name="TimeDisplay"
-                       FontSize="50"
-                       VerticalAlignment="Center"
-                       Foreground="#2D2D2D"
-                       HorizontalAlignment="Center"
-                       Text="{Binding Spielzeit}"/>
-                       
+                           Name="TimeDisplay"
+                           FontSize="50"
+                           VerticalAlignment="Center"
+                           Foreground="#2D2D2D"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Spielzeit}"/>
+
 
                         <Button x:Name="Start"
                             Grid.Row="1"
@@ -187,21 +187,20 @@
                             Command="{Binding GastScoreDown}"/>
 
                         <TextBlock Grid.Column="0"
-                               
-                   FontSize="100"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                   Margin="20"
-                   HorizontalAlignment="Right"
-                   Text="{Binding GastTeamScore}"/>
+                           FontSize="100"
+                           VerticalAlignment="Center"                   
+                           Foreground="#2D2D2D"
+                           Margin="20"
+                           HorizontalAlignment="Right"
+                           Text="{Binding GastTeamScore}"/>
 
                         <TextBlock Grid.Column="0"
-                               Grid.Row="1" 
-                   FontSize="50"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                               Margin="20"
-                   HorizontalAlignment="Right">Gast</TextBlock>
+                           Grid.Row="1" 
+                           FontSize="50"
+                           VerticalAlignment="Center"                   
+                           Foreground="#2D2D2D"
+                           Margin="20"
+                           HorizontalAlignment="Right">Gast</TextBlock>
 
                     </Grid>
 
@@ -258,7 +257,7 @@
                     <Button x:Name="AbbruchHeim"
                             Grid.Row="0"
                             Grid.Column="1"
-                        Grid.ColumnSpan="3"
+                            Grid.ColumnSpan="3"
                             Margin="5,5"
                             Content="Abbruch"
                             Foreground="#2D2D2D"
@@ -269,7 +268,7 @@
                     <Button x:Name="AlleZurücksetzen"
                             Grid.Row="0"
                             Grid.Column="5"
-                        Grid.ColumnSpan="2"
+                            Grid.ColumnSpan="2"
                             Margin="30,10"
                             Content="Alle Zurücksetzen"
                             Foreground="#2D2D2D"
@@ -278,25 +277,25 @@
                             Command="{Binding ResetAll}"
                             />
 
-                    <TextBlock
-                               
-                        Grid.Row="1"
-                           Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                   FontSize="50"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                   HorizontalAlignment="Center"
-                    Text="{Binding HeimTeamStrafe}"/>
+                    <TextBlock  
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       FontSize="50"
+                       VerticalAlignment="Center"                   
+                       Foreground="#2D2D2D"
+                       HorizontalAlignment="Center"
+                       Text="{Binding HeimTeamStrafe}"/>
 
-                    <TextBlock Grid.Column="8"
-                               Grid.Row="1" 
-                    Grid.ColumnSpan="2"
-                   FontSize="50"
-                   VerticalAlignment="Center"                   
-                   Foreground="#2D2D2D"
-                   HorizontalAlignment="Center"
-                    Text="{Binding GastTeamStrafe}"/>
+                    <TextBlock 
+                       Grid.Column="8"
+                       Grid.Row="1" 
+                       Grid.ColumnSpan="2"
+                       FontSize="50"
+                       VerticalAlignment="Center"                   
+                       Foreground="#2D2D2D"
+                       HorizontalAlignment="Center"
+                       Text="{Binding GastTeamStrafe}"/>
 
                     <Button x:Name="ZweiMinGast"
                             Grid.Row="0"
@@ -328,7 +327,7 @@
                     <Button x:Name="AbbruchGast"
                             Grid.Row="0"
                             Grid.Column="8"
-                        Grid.ColumnSpan="3"
+                            Grid.ColumnSpan="3"
                             Margin="5,5"
                             Content="Abbruch"
                             Foreground="#2D2D2D"

@@ -28,6 +28,8 @@ namespace Umsetzung_III
             minute = 0;
 
             ButtonVisibilityStrafe = true;
+            ButtonVisibilityChanged();
+
         }
         public void Start(Strafe strafe)
         {
@@ -43,11 +45,13 @@ namespace Umsetzung_III
                     minute = 10;
                     break;
             }
-            timer.Start();
             StrafzeitChanged();
+
+            timer.Start();
 
             ButtonVisibilityStrafe = false;
             ButtonVisibilityChanged();
+
         }
 
         public void Resume()
@@ -55,21 +59,18 @@ namespace Umsetzung_III
             if(minute >= 0 && sekunde > 0)
             {
                 timer.Start();
-                StrafzeitChanged();
             }
             
         }
         public void Stop()
         {
             timer.Stop();
-            StrafzeitChanged();
         }
         public void Reset()
         {
             timer.Stop();
             this.minute = 0;
             this.sekunde = 0;
-            StrafzeitChanged();
 
             ButtonVisibilityStrafe = true;
             ButtonVisibilityChanged();
