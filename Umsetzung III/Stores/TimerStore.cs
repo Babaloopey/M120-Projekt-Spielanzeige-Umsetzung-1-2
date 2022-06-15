@@ -24,6 +24,8 @@ namespace Umsetzung_III
 
         public event Action OnSpielzeitChanged;
         public event Action OnButtonVisibilityChanged;
+        public event Action OnZeitGestartet;
+        public event Action OnZeitGestoppt;
         public TimerStore(int duration, ViewModel viewModel)
         {
             this.viewModel = viewModel;
@@ -42,6 +44,7 @@ namespace Umsetzung_III
         public void Start()
         {
             timer.Start();
+            ZeitGestartet();
             SpielzeitChanged();
 
             ButtonVisibilityStart = false;
@@ -51,6 +54,7 @@ namespace Umsetzung_III
         public void Stop()
         {
             timer.Stop();
+            ZeitGestoppt();
             SpielzeitChanged();
 
             ButtonVisibilityStart = true;
@@ -110,6 +114,14 @@ namespace Umsetzung_III
         private void ButtonVisibilityChanged()
         {
             OnButtonVisibilityChanged?.Invoke();
+        }
+        private void ZeitGestoppt()
+        {
+            OnZeitGestoppt?.Invoke();
+        }
+        private void ZeitGestartet()
+        {
+            OnZeitGestartet?.Invoke();
         }
     }
 }

@@ -59,8 +59,12 @@ namespace Umsetzung_III
 
         public void Resume()
         {
-            timer.Start();
-            StrafzeitChanged();
+            if(minute >= 0 && sekunde > 0)
+            {
+                timer.Start();
+                StrafzeitChanged();
+            }
+            
         }
         public void Stop()
         {

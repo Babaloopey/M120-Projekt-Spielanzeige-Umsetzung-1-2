@@ -15,6 +15,8 @@ namespace Umsetzung_III
         public TimeCommand(TimerStore timerStore,ZeitAktion zeitAktion)
         {
             this.timerStore = timerStore;
+            this.zeitAktion = zeitAktion;
+
         }
 
         public override void Execute(object? parameter)

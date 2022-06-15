@@ -16,8 +16,8 @@ namespace Umsetzung_III
     {
         private readonly Model spielanzeige;
         private readonly TimerStore timerStore;
-        private readonly StrafenStore strafenHeim;
-        private readonly StrafenStore strafenGast;
+        public readonly StrafenStore strafenHeim;
+        public readonly StrafenStore strafenGast;
 
         public bool ButtonVisibilityStart => timerStore.ButtonVisibilityStart;
         public bool ButtonVisibilityStop => timerStore.ButtonVisibilityStop;
@@ -142,6 +142,9 @@ namespace Umsetzung_III
 
             this.timerStore.OnSpielzeitChanged += TimerStore_SpielzeitChanged;
             this.timerStore.OnButtonVisibilityChanged += TimerStore_ButtonVisibilityChanged;
+            this.timerStore.OnZeitGestoppt += TimerStore_ZeitGestoppt;
+            this.timerStore.OnZeitGestartet += TimerStore_ZeitGestartet;
+
 
             this.strafenHeim.OnStrafzeitChanged += strafenHeim_StrafzeitChanged;
             this.strafenHeim.OnButtonVisibilityChanged += StrafenHeim_ButtonVisibilityChanged;
@@ -182,6 +185,17 @@ namespace Umsetzung_III
         {
             OnPropertyChanged("ButtonVisibilityStart");
             OnPropertyChanged("ButtonVisibilityStop");
+        }
+        private void TimerStore_ZeitGestoppt()
+        {
+            strafenHeim.Stop();
+            strafenGast.Stop();
+        }
+        private void TimerStore_ZeitGestartet()
+        {
+            strafenHeim.Resume();
+            strafenGast.Resume();
+
         }
         private void strafenHeim_StrafzeitChanged()
         {
