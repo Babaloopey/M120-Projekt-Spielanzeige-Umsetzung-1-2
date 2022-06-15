@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Umsetzung_II
+namespace Umsetzung_III
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ViewModel _viewModel;
-
-        public MainWindow()
+        public MainWindow(ViewModel viewModel)
         {
             InitializeComponent();
-            _viewModel = new ViewModel();
-            // The DataContext serves as the starting point of Binding Paths
-            DataContext = _viewModel;
+            DataContext = viewModel;
         }
-
     }
 }

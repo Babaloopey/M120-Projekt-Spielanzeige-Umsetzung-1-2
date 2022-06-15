@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Umsetzung_II"
+        xmlns:local="clr-namespace:Umsetzung_II" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
    <Grid>
@@ -14,6 +14,7 @@
     <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
          <RowDefinition Height="Auto"/>
          <RowDefinition Height="Auto"/>
      </Grid.RowDefinitions>
@@ -39,6 +40,8 @@
        
         <TextBlock Grid.Column="1" Grid.Row="3" Margin="4" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
 
+        <Button Grid.Column="1" Grid.Row="4" Command="{Binding KnopfCommand}">Klick</Button>
+           
 
     </Grid>
 </Window>

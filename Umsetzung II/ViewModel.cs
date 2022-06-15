@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Umsetzung_II
 {
@@ -54,6 +55,8 @@ namespace Umsetzung_II
                     return age;
                 }
             }
+
+        public ICommand KnopfCommand { get; }
           
 
             public ViewModel()
@@ -64,6 +67,7 @@ namespace Umsetzung_II
                     LastName = "Doe",
                     BirthDate = DateTime.Now.AddYears(-30)
                 };
+            KnopfCommand = new KlickCommand();
             }
 
             public event PropertyChangedEventHandler PropertyChanged;
