@@ -35,11 +35,11 @@ namespace Umsetzung_III
         }
         public string HeimTeamStrafe
         {
-            get { return strafenHeim.strafzeit; }
+            get { return strafenHeim.Strafzeit; }
         }
         public string GastTeamStrafe
         {
-            get { return strafenGast.strafzeit; }
+            get { return strafenGast.Strafzeit; }
         }
         public int Halbzeit
         {

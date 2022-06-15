@@ -13,9 +13,7 @@ namespace Umsetzung_III
         private readonly Timer timer;
         private int sekunde;
         private int minute;
-
-        public string strafzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
-
+        public string Strafzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
         public bool ButtonVisibilityStrafe;
 
         public event Action OnStrafzeitChanged;
@@ -23,7 +21,6 @@ namespace Umsetzung_III
 
         public StrafenStore()
         {
-
             timer = new Timer(1000);
             timer.Elapsed += Timer_Elapsed;
 
@@ -66,7 +63,6 @@ namespace Umsetzung_III
         {
             timer.Stop();
             StrafzeitChanged();
-
         }
         public void Reset()
         {

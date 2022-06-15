@@ -10,10 +10,8 @@ namespace Umsetzung_III
     {
         public string HeimTeamName { get; set; }
         public string GastTeamName { get; set; }
-
         public int HeimTeamScore { get; set; }
         public int GastTeamScore { get; set; }
-
         public int Halbzeit { get; set; }
 
         public Model()
@@ -33,6 +31,5 @@ namespace Umsetzung_III
             this.GastTeamScore = 0;
             this.Halbzeit = 1;
         }
-
     }
 }
