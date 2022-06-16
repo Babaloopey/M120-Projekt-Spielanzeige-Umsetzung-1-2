@@ -5,11 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Umsetzung_III" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1066">
+        Title="MainWindow" Height="600" Width="1066" MouseDoubleClick="SetWindowToFullScreen" StateChanged="Window_StateChanged">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=HeimScoreUp}" 
+                Key="W" />
+        <KeyBinding Command="{Binding Path=HeimScoreDown}" 
+                Key="Q" />
+        <KeyBinding Command="{Binding Path=GastScoreUp}" 
+                Key="P" />
+        <KeyBinding Command="{Binding Path=GastScoreDown}" 
+                Key="O" />
+        <KeyBinding Command="{Binding Path=SpaceButton}" 
+                Key="Space" />
+
+
+    </Window.InputBindings>
 
     <Viewbox>
 

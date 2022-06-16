@@ -11,6 +11,6 @@ namespace Umsetzung_III
         public enum Team { Gast, Heim}
         public enum StandVeraenderung { Hoch, Runter}
         public enum Strafe { Zwei, Fuenf, Zehn, Reset}
-        public enum ZeitAktion { Start, Stop, Reset}
+        public enum ZeitAktion { Start, Stop, Reset, Space}
     }
 }

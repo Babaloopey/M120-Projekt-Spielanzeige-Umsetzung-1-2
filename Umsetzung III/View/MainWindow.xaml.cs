@@ -24,5 +24,29 @@ namespace Umsetzung_III
             InitializeComponent();
             DataContext = viewModel;
         }
+
+        private void SetWindowToFullScreen(object sender, MouseButtonEventArgs e)
+        {
+            if(this.WindowState != WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowStyle = WindowStyle.None;
+            }
+            else
+            {
+                this.WindowStyle = WindowStyle.SingleBorderWindow;
+            }
+        }
     }
 }

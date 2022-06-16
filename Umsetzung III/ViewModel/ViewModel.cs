@@ -111,6 +111,7 @@ namespace Umsetzung_III
         public ICommand StartTime { get; }
         public ICommand StopTime { get; }
         public ICommand ResetTime { get; }
+        public ICommand SpaceButton { get; }
         public ICommand ResetAll { get; }
 
         public ICommand HeimStrafeZwei { get; }
@@ -167,6 +168,8 @@ namespace Umsetzung_III
             StartTime = new TimeCommand(this.timerStore, ZeitAktion.Start);
             StopTime = new TimeCommand(this.timerStore, ZeitAktion.Stop);
             ResetTime = new TimeCommand(this.timerStore, ZeitAktion.Reset);
+            SpaceButton = new TimeCommand(this.timerStore, ZeitAktion.Space);
+
 
             // Buttons fuer die Kontrolle der Strafen: Gast
             GastStrafeZwei = new StrafenCommand( this.strafenGast, Strafe.Zwei);

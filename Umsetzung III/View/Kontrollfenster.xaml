@@ -5,16 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Umsetzung_III" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="Kontrollfenster" Height="600" Width="1066">
+        Title="Kontrollfenster" Height="600" Width="1066" MouseLeftButtonDown="window_MouseDown">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=HeimScoreUp}" 
+                Key="W" />
+        <KeyBinding Command="{Binding Path=HeimScoreDown}" 
+                Key="Q" />
+        <KeyBinding Command="{Binding Path=GastScoreUp}" 
+                Key="P" />
+        <KeyBinding Command="{Binding Path=GastScoreDown}" 
+                Key="O" />
+        <KeyBinding Command="{Binding Path=SpaceButton}" 
+                Key="Space" />
+        
+    </Window.InputBindings>
+
     <Viewbox>
         <Grid
             Height="600"
             Width="1090"
+            Name="MainGrid"
+            Focusable="True"
          >
 
             <Grid>
@@ -80,6 +96,7 @@
                             Content="+ (W)"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Command="{Binding HeimScoreUp}"/>
 
 
@@ -90,6 +107,7 @@
                             Content="- (Q)"
                             Foreground="#2D2D2D"
                             FontSize="50" 
+                            Focusable="False"
                             Command="{Binding HeimScoreDown}"/>
 
                         <TextBlock Grid.Column="1"
@@ -133,6 +151,7 @@
                             Content="Start (Space)"
                             Foreground="#2D2D2D"
                             FontSize="40"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding StartTime}"/>
 
@@ -143,6 +162,7 @@
                             Content="Pause (Space)"
                             Foreground="#2D2D2D"
                             FontSize="40"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStop, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding StopTime}"/>
 
@@ -153,6 +173,7 @@
                             Content="Zurücksetzen"
                             Foreground="#2D2D2D"
                             FontSize="40"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding ResetTime}"/>
 
@@ -175,6 +196,7 @@
                             Content="+ (P)"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Command="{Binding GastScoreUp}"/>
 
                         <Button x:Name="GastDown"
@@ -184,6 +206,7 @@
                             Content="- (O)"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Command="{Binding GastScoreDown}"/>
 
                         <TextBlock Grid.Column="0"
@@ -234,6 +257,7 @@
                             Content="2''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityHeimStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding HeimStrafeZwei}"/>
                     <Button x:Name="FünfMinHeim"
@@ -243,6 +267,7 @@
                             Content="5''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityHeimStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding HeimStrafeFuenf}"/>
                     <Button x:Name="ZehnMinHeim"
@@ -252,6 +277,7 @@
                             Content="10''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityHeimStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding HeimStrafeZehn}"/>
                     <Button x:Name="AbbruchHeim"
@@ -262,6 +288,7 @@
                             Content="Abbruch"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityHeimReset, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding HeimStrafeReset}"/>
 
@@ -273,6 +300,7 @@
                             Content="Alle Zurücksetzen"
                             Foreground="#2D2D2D"
                             FontSize="40"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding ResetAll}"
                             />
@@ -304,6 +332,7 @@
                             Content="2''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityGastStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding GastStrafeZwei}"/>
                     <Button x:Name="FünfMinGast"
@@ -313,6 +342,7 @@
                             Content="5''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityGastStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding GastStrafeFuenf}"/>
                     <Button x:Name="ZehnMinGast"
@@ -322,6 +352,7 @@
                             Content="10''"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityGastStrafe, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding GastStrafeZehn}"/>
                     <Button x:Name="AbbruchGast"
@@ -332,6 +363,7 @@
                             Content="Abbruch"
                             Foreground="#2D2D2D"
                             FontSize="50"
+                            Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityGastReset, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding GastStrafeReset}"/>
 

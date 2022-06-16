@@ -34,10 +34,11 @@ namespace Umsetzung_III
         {
             MainWindow spielanzeige = new MainWindow(viewModel);
             spielanzeige.Show();
-            spielanzeige.WindowState = WindowState.Maximized;
-            spielanzeige.WindowStyle = WindowStyle.SingleBorderWindow;
-
         }
 
+        private void window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainGrid.Focus();
+        }
     }
 }
