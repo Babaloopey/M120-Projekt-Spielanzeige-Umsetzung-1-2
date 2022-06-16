@@ -21,6 +21,7 @@ namespace Umsetzung_III
     public partial class Kontrollfenster : Window
     {
         private ViewModel viewModel;
+        MainWindow spielanzeige;
         public Kontrollfenster()
         {
             InitializeComponent();
@@ -32,13 +33,18 @@ namespace Umsetzung_III
 
         private void ShowSpielanzeige()
         {
-            MainWindow spielanzeige = new MainWindow(viewModel);
+            spielanzeige = new MainWindow(viewModel);
             spielanzeige.Show();
         }
 
         private void window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            spielanzeige.Close();
         }
     }
 }
