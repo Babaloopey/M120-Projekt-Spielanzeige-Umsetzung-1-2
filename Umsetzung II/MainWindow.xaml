@@ -17,7 +17,9 @@
          <RowDefinition Height="Auto"/>
          <RowDefinition Height="Auto"/>
          <RowDefinition Height="Auto"/>
-     </Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
 
       
 
@@ -41,7 +43,9 @@
         <TextBlock Grid.Column="1" Grid.Row="3" Margin="4" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"/>
 
         <Button Grid.Column="1" Grid.Row="4" Command="{Binding KnopfCommand}">Klick</Button>
-           
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding ClickCounter}"/>
+
+
 
     </Grid>
 </Window>

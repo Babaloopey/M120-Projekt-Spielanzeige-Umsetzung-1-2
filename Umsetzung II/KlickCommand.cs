@@ -9,7 +9,14 @@ namespace Umsetzung_II
 {
     public class KlickCommand : ICommand
     {
+        private readonly ViewModel viewModel;
+
         public event EventHandler? CanExecuteChanged;
+
+        public KlickCommand(ViewModel viewModel)
+        {
+            this.viewModel = viewModel;
+        }
 
         public bool CanExecute(object? parameter)
         {
@@ -18,7 +25,8 @@ namespace Umsetzung_II
 
         public void Execute(object? parameter)
         {
-            
+            viewModel.ClickCounter++;
         }
+
     }
 }

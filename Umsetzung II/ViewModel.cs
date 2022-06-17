@@ -1,86 +1,98 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Umsetzung_II
 {
-    sealed class ViewModel: INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
 
         // INotifyPropertyChanged notifies the View of property changes, so that Bindings are updated.
-        
-            private Model user;
 
-            public string FirstName
+        private Model user;
+        private int clickCounter;
+
+        public string FirstName
+        {
+            get { return user.FirstName; }
+            set
             {
-                get { return user.FirstName; }
-                set
+                if (user.FirstName != value)
                 {
-                    if (user.FirstName != value)
-                    {
-                        user.FirstName = value;
-                        OnPropertyChange("FirstName");
-                       
-                    }
+                    user.FirstName = value;
+                    OnPropertyChange("FirstName");
+
                 }
             }
+        }
 
-            public string LastName
+        public string LastName
+        {
+            get { return user.LastName; }
+            set
             {
-                get { return user.LastName; }
-                set
+                if (user.LastName != value)
                 {
-                    if (user.LastName != value)
-                    {
-                        user.LastName = value;
-                        OnPropertyChange("LastName");
-                        
-                    }
+                    user.LastName = value;
+                    OnPropertyChange("LastName");
+
                 }
             }
+        }
 
-            // This property is an example of how model properties can be presented differently to the View.
-            // In this case, we transform the birth date to the user's age, which is read only.
-            public int Age
+        // This property is an example of how model properties can be presented differently to the View.
+        // In this case, we transform the birth date to the user's age, which is read only.
+        public int Age
+        {
+            get
             {
-                get
+                DateTime today = DateTime.Today;
+                int age = today.Year - user.BirthDate.Year;
+                if (user.BirthDate > today.AddYears(-age)) age--;
+                return age;
+            }
+        }
+
+        public int ClickCounter
+        {
+            get
+            {
+                return clickCounter;
+            }
+            set
+            {
+                if (clickCounter != value)
                 {
-                    DateTime today = DateTime.Today;
-                    int age = today.Year - user.BirthDate.Year;
-                    if (user.BirthDate > today.AddYears(-age)) age--;
-                    return age;
+                    clickCounter = value;
+                    OnPropertyChange("ClickCounter");
+
                 }
             }
+        }
 
         public ICommand KnopfCommand { get; }
-          
 
-            public ViewModel()
+        public ViewModel()
+        {
+            user = new Model
             {
-                user = new Model
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    BirthDate = DateTime.Now.AddYears(-30)
-                };
-            KnopfCommand = new KlickCommand();
-            }
+                FirstName = "John",
+                LastName = "Doe",
+                BirthDate = DateTime.Now.AddYears(-30)
+            };
+            clickCounter = 0;
+            KnopfCommand = new KlickCommand(this);
+        }
 
-            public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-            protected void OnPropertyChange(string propertyName)
+        protected void OnPropertyChange(string propertyName)
+        {
+            if (PropertyChanged != null)
             {
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-                }
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        
-
+        }
 
     }
 }
