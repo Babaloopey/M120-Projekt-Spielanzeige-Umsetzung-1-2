@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M120_226B Projekt View 2", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umsetzung II", "Umsetzung II\Umsetzung II.csproj", "{54FE1571-7FE8-4FC6-9281-59D13A2DB1AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umsetzung III", "Umsetzung III\Umsetzung III.csproj", "{0DF08787-82E9-4A93-85D9-39CAB0395726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umsetzung III", "Umsetzung III\Umsetzung III.csproj", "{0DF08787-82E9-4A93-85D9-39CAB0395726}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UH Spielanzeige", "UH Spielanzeige\UH Spielanzeige.vdproj", "{923ACFC3-616C-4485-9DE4-7172740C01A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,8 @@ Global
 		{0DF08787-82E9-4A93-85D9-39CAB0395726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DF08787-82E9-4A93-85D9-39CAB0395726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DF08787-82E9-4A93-85D9-39CAB0395726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923ACFC3-616C-4485-9DE4-7172740C01A8}.Debug|Any CPU.ActiveCfg = Debug
+		{923ACFC3-616C-4485-9DE4-7172740C01A8}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

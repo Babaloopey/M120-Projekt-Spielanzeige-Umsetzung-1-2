@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Umsetzung_III" d:DataContext="{d:DesignInstance Type=local:SpielanzeigeViewModel}"
         mc:Ignorable="d"
-        Title="Kontrollfenster" Height="600" Width="1066" MouseLeftButtonDown="Window_MouseDown" Closing="Window_Closing">
+        Title="Kontrollfenster" Height="600" Width="1066" MouseLeftButtonDown="Window_MouseDown" Closing="Window_Closing" Icon="/View/STV_Beromuenster Logo.jpg">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

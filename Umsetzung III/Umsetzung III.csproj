@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="View\STV_Beromuenster Logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\STV_Beromuenster Logo.jpg" />
+  </ItemGroup>
+
 </Project>
