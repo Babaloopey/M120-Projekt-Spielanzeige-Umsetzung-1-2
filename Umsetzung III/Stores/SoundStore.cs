@@ -12,7 +12,7 @@ namespace Umsetzung_III
 {
     public class SoundStore
     {
-        private MediaPlayer _mediaPlayer = new MediaPlayer();
+        private readonly MediaPlayer _mediaPlayer = new MediaPlayer();
         private Uri _audioFileUri;
 
         public SoundStore()

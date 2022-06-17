@@ -151,10 +151,10 @@ namespace Umsetzung_III
             _timerStore.OnZeitGestoppt += TimerStore_ZeitGestoppt;
             _timerStore.OnZeitGestartet += TimerStore_ZeitGestartet;
 
-            _strafenHeim.OnStrafzeitChanged += strafenHeim_StrafzeitChanged;
+            _strafenHeim.OnStrafzeitChanged += StrafenHeim_StrafzeitChanged;
             _strafenHeim.OnButtonVisibilityChanged += StrafenHeim_ButtonVisibilityChanged;
 
-            _strafenGast.OnStrafzeitChanged += strafenGast_StrafzeitChanged;
+            _strafenGast.OnStrafzeitChanged += StrafenGast_StrafzeitChanged;
             _strafenGast.OnButtonVisibilityChanged += StrafenGast_ButtonVisibilityChanged;
 
             // Zuteilung fuer Buttons
@@ -209,7 +209,7 @@ namespace Umsetzung_III
 
         }
 
-        private void strafenHeim_StrafzeitChanged()
+        private void StrafenHeim_StrafzeitChanged()
         {
             OnPropertyChanged("HeimTeamStrafe");
         }
@@ -219,7 +219,7 @@ namespace Umsetzung_III
                 OnPropertyChanged("ButtonVisibilityHeimReset");
         }
 
-        private void strafenGast_StrafzeitChanged()
+        private void StrafenGast_StrafzeitChanged()
         {
             OnPropertyChanged("GastTeamStrafe");
         }

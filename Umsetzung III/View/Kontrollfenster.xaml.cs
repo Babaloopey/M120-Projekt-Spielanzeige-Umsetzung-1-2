@@ -20,7 +20,7 @@ namespace Umsetzung_III
     /// </summary>
     public partial class Kontrollfenster : Window
     {
-        private SpielanzeigeViewModel _viewModel;
+        private readonly SpielanzeigeViewModel _viewModel;
         private MainWindow _spielanzeige;
         public Kontrollfenster()
         {
@@ -37,7 +37,7 @@ namespace Umsetzung_III
             _spielanzeige.Show();
         }
 
-        private void window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Focus();
         }

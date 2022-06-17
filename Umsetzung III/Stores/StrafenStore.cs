@@ -56,7 +56,7 @@ namespace Umsetzung_III
 
         public void Resume()
         {
-            if(_minute >= 0 && _sekunde > 0)
+            if(_minute > 0 || _sekunde > 0)
             {
                 _timer.Start();
             }

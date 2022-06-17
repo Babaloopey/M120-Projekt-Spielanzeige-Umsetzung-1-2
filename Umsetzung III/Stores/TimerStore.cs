@@ -9,11 +9,11 @@ namespace Umsetzung_III
 {
     public class TimerStore
     {
-        private SpielanzeigeViewModel _viewModel;
+        private readonly SpielanzeigeViewModel _viewModel;
         private readonly Timer _timer;
         private int _sekunde;
         private int _minute;
-        private int _duration;
+        private readonly int _duration;
 
         public bool ButtonVisibilityStart;
         public string Spielzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
