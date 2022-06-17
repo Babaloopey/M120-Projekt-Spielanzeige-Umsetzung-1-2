@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Umsetzung_III
 {
-    internal class Model
+    internal class SpielanzeigeModel
     {
         public string HeimTeamName { get; set; }
         public string GastTeamName { get; set; }
@@ -14,7 +14,7 @@ namespace Umsetzung_III
         public int GastTeamScore { get; set; }
         public int Halbzeit { get; set; }
 
-        public Model()
+        public SpielanzeigeModel()
         {
             this.HeimTeamName = "Heim";
             this.GastTeamName = "Gast";

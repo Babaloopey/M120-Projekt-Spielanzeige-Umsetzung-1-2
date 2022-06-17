@@ -9,15 +9,15 @@ namespace Umsetzung_III
     // Command, der im ViewModel alles zuruecksetzt
     internal class ResetAllCommand : CommandBase
     {
-        private readonly ViewModel viewModel;
-        public ResetAllCommand(ViewModel viewModel)
+        private readonly SpielanzeigeViewModel _viewModel;
+        public ResetAllCommand(SpielanzeigeViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            _viewModel = viewModel;
 
         }
         public override void Execute(object? parameter)
         {
-            viewModel.ResetViewModel();
+            _viewModel.ResetViewModel();
 
         }
     }

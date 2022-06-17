@@ -10,37 +10,36 @@ namespace Umsetzung_III
     // Command, der je nach ZeitAktion die Spielzeit des TimerStores beeinflusst
     internal class TimeCommand : CommandBase
     {
-        private readonly TimerStore timerStore;
-        private readonly ZeitAktion zeitAktion;
+        private readonly TimerStore _timerStore;
+        private readonly ZeitAktion _zeitAktion;
 
         public TimeCommand(TimerStore timerStore,ZeitAktion zeitAktion)
         {
-            this.timerStore = timerStore;
-            this.zeitAktion = zeitAktion;
+            this._timerStore = timerStore;
+            this._zeitAktion = zeitAktion;
         }
 
         public override void Execute(object? parameter)
         {
-            switch (zeitAktion)
+            switch (_zeitAktion)
             {
                 case ZeitAktion.Start:
-                    timerStore.Start();
+                    _timerStore.Start();
                     break;
                 case ZeitAktion.Stop:
-                    timerStore.Stop();
+                    _timerStore.Stop();
                     break;
                 case ZeitAktion.Reset:
-                    timerStore.Reset();
+                    _timerStore.Reset();
                     break;
                 case ZeitAktion.Space:
-                    if (timerStore.ButtonVisibilityStart == true)
+                    if (_timerStore.ButtonVisibilityStart == true)
                     {
-                        timerStore.Start();
+                        _timerStore.Start();
                     }
                     else
                     {
-                        timerStore.Stop();
-
+                        _timerStore.Stop();
                     }
                     break;
             }

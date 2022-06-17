@@ -11,51 +11,51 @@ namespace Umsetzung_III
     // Command, der den Punktestand der Teams je nach Paramter des Buttons veraendert
     internal class ScoreCommand : CommandBase
     {
-        private readonly ViewModel spielanzeige;
-        private readonly Team team;
-        private readonly StandVeraenderung standVeraenderung;
+        private readonly SpielanzeigeViewModel _spielanzeige;
+        private readonly Team _team;
+        private readonly StandVeraenderung _standVeraenderung;
 
-        public ScoreCommand(ViewModel spielanzeige, Team team, StandVeraenderung standVeraenderung)
+        public ScoreCommand(SpielanzeigeViewModel spielanzeige, Team team, StandVeraenderung standVeraenderung)
         {
-            this.spielanzeige = spielanzeige;
-            this.team = team;
-            this.standVeraenderung = standVeraenderung;
+            _spielanzeige = spielanzeige;
+            _team = team;
+            _standVeraenderung = standVeraenderung;
 
         }
         public override void Execute(object? parameter)
         {
-            switch (this.team)
+            switch (this._team)
             {
                 case Team.Gast:
-                    switch (this.standVeraenderung)
+                    switch (this._standVeraenderung)
                     {
                         case StandVeraenderung.Hoch:
-                            spielanzeige.GastTeamScore++;
+                            _spielanzeige.GastTeamScore++;
                             break;
                         case StandVeraenderung.Runter:
-                            if(spielanzeige.GastTeamScore > 0)
+                            if(_spielanzeige.GastTeamScore > 0)
                             {
-                                spielanzeige.GastTeamScore--;
+                                _spielanzeige.GastTeamScore--;
                             }
                             break;
                     }
-                    spielanzeige.OnPropertyChanged("GastTeamScore");
+                    _spielanzeige.OnPropertyChanged("GastTeamScore");
                     break;
 
                 case Team.Heim:
-                    switch (this.standVeraenderung)
+                    switch (this._standVeraenderung)
                     {
                         case StandVeraenderung.Hoch:
-                            spielanzeige.HeimTeamScore++;
+                            _spielanzeige.HeimTeamScore++;
                             break;
                         case StandVeraenderung.Runter:
-                            if(spielanzeige.HeimTeamScore > 0)
+                            if(_spielanzeige.HeimTeamScore > 0)
                             {
-                                spielanzeige.HeimTeamScore--;
+                                _spielanzeige.HeimTeamScore--;
                             }
                             break;
                     }
-                    spielanzeige.OnPropertyChanged("HeimTeamScore");
+                    _spielanzeige.OnPropertyChanged("HeimTeamScore");
                     break;
             }
         }

@@ -9,39 +9,36 @@ namespace Umsetzung_III
 {
     public class TimerStore
     {
-        private ViewModel viewModel;
-        private readonly Timer timer;
-        private int sekunde;
-        private int minute;
-
-        private int duration;
+        private SpielanzeigeViewModel _viewModel;
+        private readonly Timer _timer;
+        private int _sekunde;
+        private int _minute;
+        private int _duration;
 
         public bool ButtonVisibilityStart;
-
-
-        public string spielzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
+        public string Spielzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
 
         public event Action OnSpielzeitChanged;
         public event Action OnButtonVisibilityChanged;
         public event Action OnZeitGestartet;
         public event Action OnZeitGestoppt;
-        public TimerStore(int duration, ViewModel viewModel)
+        public TimerStore(int duration, SpielanzeigeViewModel viewModel)
         {
-            this.viewModel = viewModel;
-            this.duration = duration;
+            _viewModel = viewModel;
+            _duration = 2;
 
-            timer = new Timer(1000);
-            timer.Elapsed += Timer_Elapsed;
+            _timer = new Timer(1000);
+            _timer.Elapsed += Timer_Elapsed;
 
-            sekunde = 0;
-            minute = this.duration;
+            _sekunde = 0;
+            _minute = _duration;
 
             ButtonVisibilityStart = true;
             ButtonVisibilityChanged();
         }
         public void Start()
         {
-            timer.Start();
+            _timer.Start();
             ZeitGestartet();
             SpielzeitChanged();
 
@@ -50,7 +47,7 @@ namespace Umsetzung_III
         }
         public void Stop()
         {
-            timer.Stop();
+            _timer.Stop();
             ZeitGestoppt();
 
             ButtonVisibilityStart = true;
@@ -58,9 +55,9 @@ namespace Umsetzung_III
         }
         public void Reset()
         {
-            timer.Stop();
-            this.minute = this.duration;
-            this.sekunde = 0;
+            _timer.Stop();
+            _minute = _duration;
+            _sekunde = 0;
             SpielzeitChanged();
 
             ButtonVisibilityStart = true;
@@ -69,17 +66,17 @@ namespace Umsetzung_III
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if(sekunde == 0)
+            if(_sekunde == 0)
             {
-                minute--;
-                sekunde = 59;
+                _minute--;
+                _sekunde = 59;
             }
             else
             {
-                sekunde--;
+                _sekunde--;
             }
 
-            if(minute == 0 && sekunde == 0)
+            if(_minute == 0 && _sekunde == 0)
             {
                 SpielzeitAbgelaufen();
             }
@@ -89,14 +86,17 @@ namespace Umsetzung_III
 
         private void SpielzeitAbgelaufen()
         {
-            this.Stop();
-
+            // Soundstore etwas hackish bedient. Bei Instanzierung im Konstruktor und Execution hier meldet soundStore.Play, dass sich
+            // das abzuspielende Objekt in einem anderen Thread befindet
+            new SoundStore().Play();
+            Stop();
             Timer wartezeit = new Timer(5000);
             wartezeit.Start();
             wartezeit.Elapsed += (sender, args) =>
             {
-                this.Reset();
-                viewModel.Halbzeit += 1;
+                
+                Reset();
+                _viewModel.Halbzeit += 1;
                 wartezeit.Dispose();
             };
         }

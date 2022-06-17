@@ -19,7 +19,7 @@ namespace Umsetzung_III
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(ViewModel viewModel)
+        public MainWindow(SpielanzeigeViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

@@ -10,10 +10,10 @@ namespace Umsetzung_III
 {
     public class StrafenStore
     {
-        private readonly Timer timer;
-        private int sekunde;
-        private int minute;
-        public string Strafzeit => minute.ToString("00") + ":" + sekunde.ToString("00");
+        private readonly Timer _timer;
+        private int _sekunde;
+        private int _minute;
+        public string Strafzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
         public bool ButtonVisibilityStrafe;
 
         public event Action OnStrafzeitChanged;
@@ -21,11 +21,11 @@ namespace Umsetzung_III
 
         public StrafenStore()
         {
-            timer = new Timer(1000);
-            timer.Elapsed += Timer_Elapsed;
+            _timer = new Timer(1000);
+            _timer.Elapsed += Timer_Elapsed;
 
-            sekunde = 0;
-            minute = 0;
+            _sekunde = 0;
+            _minute = 0;
 
             ButtonVisibilityStrafe = true;
             ButtonVisibilityChanged();
@@ -36,18 +36,18 @@ namespace Umsetzung_III
             switch (strafe)
             {
                 case Strafe.Zwei:
-                    minute = 2;
+                    _minute = 2;
                     break;
                 case Strafe.Fuenf:
-                    minute = 5;
+                    _minute = 5;
                     break;
                 case Strafe.Zehn:
-                    minute = 10;
+                    _minute = 10;
                     break;
             }
             StrafzeitChanged();
 
-            timer.Start();
+            _timer.Start();
 
             ButtonVisibilityStrafe = false;
             ButtonVisibilityChanged();
@@ -56,21 +56,22 @@ namespace Umsetzung_III
 
         public void Resume()
         {
-            if(minute >= 0 && sekunde > 0)
+            if(_minute >= 0 && _sekunde > 0)
             {
-                timer.Start();
+                _timer.Start();
             }
             
         }
         public void Stop()
         {
-            timer.Stop();
+            _timer.Stop();
         }
         public void Reset()
         {
-            timer.Stop();
-            this.minute = 0;
-            this.sekunde = 0;
+            _timer.Stop();
+            _minute = 0;
+            _sekunde = 0;
+            StrafzeitChanged();
 
             ButtonVisibilityStrafe = true;
             ButtonVisibilityChanged();
@@ -78,17 +79,17 @@ namespace Umsetzung_III
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (sekunde == 0)
+            if (_sekunde == 0)
             {
-                minute--;
-                sekunde = 59;
+                _minute--;
+                _sekunde = 59;
             }
             else
             {
-                sekunde--;
+                _sekunde--;
             }
 
-            if (minute == 0 && sekunde == 0)
+            if (_minute == 0 && _sekunde == 0)
             {
                 StrafzeitAbgelaufen();
             }
@@ -98,14 +99,13 @@ namespace Umsetzung_III
 
         private void StrafzeitAbgelaufen()
         {
-            timer.Stop();
-
+            Stop();
             Timer wartezeit = new Timer(5000);
             wartezeit.Start();
             wartezeit.Elapsed += (sender, args) =>
             {
-                wartezeit.Stop();
-                this.Reset();
+                Reset();
+                wartezeit.Dispose();
             };
         }
 

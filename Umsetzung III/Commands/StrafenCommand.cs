@@ -10,24 +10,24 @@ namespace Umsetzung_III
     // Command, der je Nach Strafe und Store beim jeweiligen Team eine Strafe beginnt
     internal class StrafenCommand : CommandBase
     {
-        private readonly Strafe strafe;
-        private readonly StrafenStore strafenStore;
+        private readonly Strafe _strafe;
+        private readonly StrafenStore _strafenStore;
 
         public StrafenCommand(StrafenStore strafenStore, Strafe strafe)
         {
-            this.strafe = strafe;
-            this.strafenStore = strafenStore;
+            _strafe = strafe;
+            _strafenStore = strafenStore;
         }
 
         public override void Execute(object? parameter)
         {
-            switch (strafe)
+            switch (_strafe)
             {
                 case Strafe.Reset:
-                    strafenStore.Reset();
+                    _strafenStore.Reset();
                     break;
                 default:
-                    strafenStore.Start(strafe);
+                    _strafenStore.Start(_strafe);
                     break;
             }
         }
