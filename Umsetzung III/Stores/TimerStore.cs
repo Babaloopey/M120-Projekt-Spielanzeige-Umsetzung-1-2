@@ -25,7 +25,7 @@ namespace Umsetzung_III
         public TimerStore(int duration, SpielanzeigeViewModel viewModel)
         {
             _viewModel = viewModel;
-            _duration = 2;
+            _duration = duration;
 
             _timer = new Timer(1000);
             _timer.Elapsed += Timer_Elapsed;
