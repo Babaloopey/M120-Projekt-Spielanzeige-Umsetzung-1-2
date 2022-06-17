@@ -97,6 +97,7 @@ namespace Umsetzung_III
             {
                 this.Reset();
                 viewModel.Halbzeit += 1;
+                wartezeit.Dispose();
             };
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -10,14 +12,23 @@ namespace Umsetzung_III
     public class SoundStore
     {
         private MediaPlayer mediaPlayer = new MediaPlayer();
+        private Uri audioFileUri;
 
         public SoundStore()
         {
-            mediaPlayer.Open(new Uri("C:/Users/vmadmin/OneDrive/01_Standardordner/Schule/2. Sem/Visual Studio Source/M120_226B Projekt UH Spielanzeige/Umsetzung III/Buzzer-Sound.wav"));
+            GetPathToSoundFile();
+        }
+        private void GetPathToSoundFile()
+        {
+            string executableFilePath = Assembly.GetExecutingAssembly().Location;
+            string executableDirectoryPath = Path.GetDirectoryName(executableFilePath);
+            string audioFilePath = Path.Combine(executableDirectoryPath, "Buzzer-Souasdfnd.wav");
+            audioFileUri = new Uri(audioFilePath);
         }
 
         public void Play()
         {
+            mediaPlayer.Open(audioFileUri);
             mediaPlayer.Play();
         }
 
