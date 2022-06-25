@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_58C51FDE2692476191328F99E46A31DB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7BC64E0883E948ACB38A503DD9D9728C"
+        "MsmKey" = "8:_8E7AB5383EEF4D37B39165AA9D0A1F45"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -132,26 +126,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58C51FDE2692476191328F99E46A31DB"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\..\\..\\Downloads\\stv_beromuenster_logo_sLc_icon.ico"
-            "TargetName" = "8:stv_beromuenster_logo_sLc_icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_41F910077EC84E99BD99A3F81E47D811"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -209,7 +183,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UH Spielanzeige"
         "ProductCode" = "8:{AA8BF249-DE8A-40EC-9CD7-CB1D35BB08C5}"
-        "PackageCode" = "8:{42867FF2-1CF2-4A1F-80EF-6F0CCB77C41D}"
+        "PackageCode" = "8:{A4A0FA0F-2518-419F-998C-58A8BCCA8479}"
         "UpgradeCode" = "8:{BACB5E71-99F0-407E-A817-5BAF6C887EBA}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -217,14 +191,14 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Rueedi Ltd."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:UH Spielanzeige"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Florin Rueedi"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Spielanzeige Applikation für Unihockey"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -329,18 +303,18 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DF5416CE65464CBAA4DDE939507F47B7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6F44CFA9C86240B793E06B6783DCCE8C"
             {
-            "Name" = "8:UH Spielanzeige"
+            "Name" = "8:Shortcut"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_7BC64E0883E948ACB38A503DD9D9728C"
+            "Target" = "8:_8E7AB5383EEF4D37B39165AA9D0A1F45"
             "Folder" = "8:_56B27E5DA3BA4154B064B40A58A4985D"
             "WorkingFolder" = "8:_41F910077EC84E99BD99A3F81E47D811"
-            "Icon" = "8:_58C51FDE2692476191328F99E46A31DB"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -742,7 +716,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7BC64E0883E948ACB38A503DD9D9728C"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8E7AB5383EEF4D37B39165AA9D0A1F45"
             {
             "SourcePath" = "8:..\\Umsetzung III\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"

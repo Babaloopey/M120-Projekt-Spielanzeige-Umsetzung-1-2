@@ -49,6 +49,8 @@ namespace Umsetzung_III
         {
             _timer.Stop();
             ZeitGestoppt();
+            SpielzeitChanged();
+
 
             ButtonVisibilityStart = true;
             ButtonVisibilityChanged();
@@ -86,11 +88,12 @@ namespace Umsetzung_III
 
         private void SpielzeitAbgelaufen()
         {
-            // Soundstore etwas hackish bedient. Bei Instanzierung im Konstruktor und Execution hier meldet soundStore.Play, dass sich
-            // das abzuspielende Objekt in einem anderen Thread befindet
-            new SoundStore().Play();
+
             Stop();
-            Timer wartezeit = new Timer(5000);
+
+            Console.Beep(250,2000);
+
+            Timer wartezeit = new Timer(3000);
             wartezeit.Start();
             wartezeit.Elapsed += (sender, args) =>
             {

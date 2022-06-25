@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Umsetzung III", "Umsetzung 
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UH Spielanzeige", "UH Spielanzeige\UH Spielanzeige.vdproj", "{923ACFC3-616C-4485-9DE4-7172740C01A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuzzerSoundFinder", "BuzzerSoundFinder\BuzzerSoundFinder.csproj", "{E6DAACED-842C-4210-9488-99572A5A2A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{0DF08787-82E9-4A93-85D9-39CAB0395726}.Release|Any CPU.Build.0 = Release|Any CPU
 		{923ACFC3-616C-4485-9DE4-7172740C01A8}.Debug|Any CPU.ActiveCfg = Debug
 		{923ACFC3-616C-4485-9DE4-7172740C01A8}.Release|Any CPU.ActiveCfg = Release
+		{E6DAACED-842C-4210-9488-99572A5A2A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6DAACED-842C-4210-9488-99572A5A2A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6DAACED-842C-4210-9488-99572A5A2A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6DAACED-842C-4210-9488-99572A5A2A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

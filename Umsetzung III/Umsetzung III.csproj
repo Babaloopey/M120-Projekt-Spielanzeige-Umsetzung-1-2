@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="View\STV_Beromuenster Logo.jpg" />
+    <None Remove="View\STV_Logo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\STV_Beromuenster Logo.jpg" />
+    <Resource Include="View\STV_Logo.jpg" />
   </ItemGroup>
 
 </Project>
