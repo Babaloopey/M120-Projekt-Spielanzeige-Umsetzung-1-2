@@ -32,6 +32,12 @@ namespace Umsetzung_III
                 case ZeitAktion.Reset:
                     _timerStore.Reset();
                     break;
+                case ZeitAktion.PlusOne:
+                    _timerStore.MinutePlusOne();
+                    break;
+                case ZeitAktion.MinusOne:
+                    _timerStore.MinuteMinusOne();
+                    break;
                 case ZeitAktion.Space:
                     if (_timerStore.ButtonVisibilityStart == true)
                     {

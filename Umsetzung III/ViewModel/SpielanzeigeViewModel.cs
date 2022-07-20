@@ -113,6 +113,8 @@ namespace Umsetzung_III
         public ICommand ResetTime { get; }
         public ICommand SpaceButton { get; }
         public ICommand ResetAll { get; }
+        public ICommand TimeMinusOne { get; }
+        public ICommand TimePlusOne { get; }
 
         public ICommand HeimStrafeZwei { get; }
         public ICommand HeimStrafeFuenf { get; }
@@ -139,6 +141,7 @@ namespace Umsetzung_III
 
         public SpielanzeigeViewModel()
         {
+            Console.Beep(250, 1000);
             // Initialisierung des Models und der Stores
             _spielanzeige = new SpielanzeigeModel();
             _timerStore = new TimerStore(20, this);
@@ -169,6 +172,9 @@ namespace Umsetzung_III
             StopTime = new TimeCommand(_timerStore, ZeitAktion.Stop);
             ResetTime = new TimeCommand(_timerStore, ZeitAktion.Reset);
             SpaceButton = new TimeCommand(_timerStore, ZeitAktion.Space);
+            TimeMinusOne = new TimeCommand(_timerStore, ZeitAktion.MinusOne);
+            TimePlusOne = new TimeCommand(_timerStore, ZeitAktion.PlusOne);
+
 
 
             // Buttons fuer die Kontrolle der Strafen: Gast

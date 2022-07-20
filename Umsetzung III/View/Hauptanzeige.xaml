@@ -59,10 +59,12 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               FontSize="70"
+                               FontSize="50"
                                VerticalAlignment="Center"
                                Foreground="#2D2D2D"
                                HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left"
                                Text="{Binding HeimTeamName}" />
 
 
@@ -74,10 +76,12 @@
                                Text="{Binding Halbzeit}" />
 
                     <TextBlock Grid.Column="2"
-                               FontSize="70"
+                               FontSize="50"
                                VerticalAlignment="Center"
                                Foreground="#2D2D2D"
                                HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Left"
                                Text="{Binding GastTeamName}" />
 
                 </Grid>
@@ -127,10 +131,8 @@
                     <Image Grid.Column="2"
                            Grid.ColumnSpan="3"
                            Source="/View/STV_Logo.jpg"
-                           Opacity="0.5"
-                           Margin="60,0,0,0"
-                           
-                            />
+                           Opacity="0.2"
+                           Margin="60,0,0,0"/>
 
 
 

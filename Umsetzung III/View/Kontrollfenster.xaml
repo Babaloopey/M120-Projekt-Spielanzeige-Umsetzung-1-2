@@ -12,16 +12,20 @@
     </Window.Resources>
 
     <Window.InputBindings>
-        <KeyBinding Command="{Binding Path=HeimScoreUp}" 
-                Key="W" />
-        <KeyBinding Command="{Binding Path=HeimScoreDown}" 
-                Key="Q" />
-        <KeyBinding Command="{Binding Path=GastScoreUp}" 
-                Key="P" />
-        <KeyBinding Command="{Binding Path=GastScoreDown}" 
-                Key="O" />
-        <KeyBinding Command="{Binding Path=SpaceButton}" 
-                Key="Space" />
+        <KeyBinding Command="{Binding Path=HeimScoreUp}"
+                    Gesture="Ctrl + W" />
+        <KeyBinding Command="{Binding Path=HeimScoreDown}"
+                    Gesture="Ctrl + Q"
+                 />
+        <KeyBinding Command="{Binding Path=GastScoreUp}"
+                    Gesture="Ctrl + P"
+                 />
+        <KeyBinding Command="{Binding Path=GastScoreDown}"
+                    Gesture="Ctrl + O"
+                 />
+        <KeyBinding Command="{Binding Path=SpaceButton}"
+                    Gesture="Ctrl + Space"
+                 />
 
     </Window.InputBindings>
 
@@ -53,11 +57,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0"
-                       FontSize="70"
+                       FontSize="50"
                        VerticalAlignment="Center"                   
                        Foreground="#2D2D2D"
                        HorizontalAlignment="Center"
-                       Text="{Binding HeimTeamName, UpdateSourceTrigger=PropertyChanged}"/>
+                             TextWrapping="Wrap"
+                             TextAlignment="Left"
+                             Text="{Binding HeimTeamName, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Grid.Column="1"
                        FontSize="150"
@@ -67,11 +73,13 @@
                        Text="{Binding Halbzeit}"/>
 
                     <TextBox Grid.Column="2"
-                       FontSize="70"
+                       FontSize="50"
                        VerticalAlignment="Center"
                        Foreground="#2D2D2D"
                        HorizontalAlignment="Center"
-                       Text="{Binding GastTeamName, UpdateSourceTrigger=PropertyChanged}"/>
+                             TextWrapping="Wrap"
+                             TextAlignment="Left"
+                             Text="{Binding GastTeamName, UpdateSourceTrigger=PropertyChanged}"/>
 
                 </Grid>
 
@@ -97,20 +105,21 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="10,50,20,5"
-                            Content="+ (W)"
+                            Content="+ (Ctrl+W)"
                             Foreground="#2D2D2D"
-                            FontSize="50"
+                            FontSize="30"
                             Focusable="False"
-                            Command="{Binding HeimScoreUp}"/>
+                            Command="{Binding HeimScoreUp}"
+                               />
 
 
                         <Button x:Name="HeimDown"
                             Grid.Row="1"
                             Grid.Column="0"
                             Margin="10,5,20,50"
-                            Content="- (Q)"
+                            Content="- (Ctrl+Q)"
                             Foreground="#2D2D2D"
-                            FontSize="50" 
+                            FontSize="30" 
                             Focusable="False"
                             Command="{Binding HeimScoreDown}"/>
 
@@ -152,9 +161,9 @@
                             Grid.Row="1"
                             Grid.Column="0"
                             Margin="30,10"
-                            Content="Start (Space)"
+                            Content="Start (Ctrl+Space)"
                             Foreground="#2D2D2D"
-                            FontSize="40"
+                            FontSize="35"
                             Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding StartTime}"/>
@@ -163,9 +172,9 @@
                             Grid.Row="1"
                             Grid.Column="0"
                             Margin="30,10"
-                            Content="Pause (Space)"
+                            Content="Pause (Ctrl+Space)"
                             Foreground="#2D2D2D"
-                            FontSize="40"
+                            FontSize="35"
                             Focusable="False"
                             Visibility="{Binding Path=ButtonVisibilityStop, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding StopTime}"/>
@@ -197,9 +206,9 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             Margin="20,50,10,5"
-                            Content="+ (P)"
+                            Content="+ (Ctrl+P)"
                             Foreground="#2D2D2D"
-                            FontSize="50"
+                            FontSize="30"
                             Focusable="False"
                             Command="{Binding GastScoreUp}"/>
 
@@ -207,9 +216,9 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Margin="20,5,10,50"
-                            Content="- (O)"
+                            Content="- (Ctrl+O)"
                             Foreground="#2D2D2D"
-                            FontSize="50"
+                            FontSize="30"
                             Focusable="False"
                             Command="{Binding GastScoreDown}"/>
 
@@ -308,6 +317,28 @@
                             Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{Binding ResetAll}"
                             />
+                    <Button x:Name="ZeitMinusEins"
+                            Grid.Row="1"
+                            Grid.Column="5"
+                            Grid.ColumnSpan="1"
+                            Margin="30,10"
+                            Content="-1 min"
+                            Foreground="#2D2D2D"
+                            FontSize="35"
+                            Focusable="False"
+                            Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding TimeMinusOne}" />
+                    <Button x:Name="ZeitPlusEins"
+                            Grid.Row="1"
+                            Grid.Column="6"
+                            Grid.ColumnSpan="1"
+                            Margin="30,10"
+                            Content="+1 min"
+                            Foreground="#2D2D2D"
+                            FontSize="35"
+                            Focusable="False"
+                            Visibility="{Binding Path=ButtonVisibilityStart, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding TimePlusOne}" />
 
                     <TextBlock  
                        Grid.Row="1"

@@ -65,6 +65,19 @@ namespace Umsetzung_III
             ButtonVisibilityStart = true;
             ButtonVisibilityChanged();
         }
+        public void MinutePlusOne()
+        {
+            _minute++;
+            SpielzeitChanged();
+        }
+        public void MinuteMinusOne()
+        {
+            if (_minute > 0)
+            {
+                _minute--;
+                SpielzeitChanged();
+            }
+        }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
