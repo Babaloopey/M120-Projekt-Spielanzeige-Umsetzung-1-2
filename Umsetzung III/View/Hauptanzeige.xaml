@@ -21,16 +21,15 @@
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=HeimScoreUp}"
-                    Key="W" />
+                    Gesture="Ctrl + W" />
         <KeyBinding Command="{Binding Path=HeimScoreDown}"
-                    Key="Q" />
+                    Gesture="Ctrl + Q" />
         <KeyBinding Command="{Binding Path=GastScoreUp}"
-                    Key="P" />
+                    Gesture="Ctrl + P" />
         <KeyBinding Command="{Binding Path=GastScoreDown}"
-                    Key="O" />
+                    Gesture="Ctrl + O" />
         <KeyBinding Command="{Binding Path=SpaceButton}"
-                    Key="Space" />
-
+                    Gesture="Ctrl + Space" />
 
     </Window.InputBindings>
 

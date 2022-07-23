@@ -16,12 +16,14 @@ namespace Umsetzung_III
         private readonly int _duration;
 
         public bool ButtonVisibilityStart;
+        public bool EffektiveSpielzeitVisibility;
         public string Spielzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
 
         public event Action OnSpielzeitChanged;
         public event Action OnButtonVisibilityChanged;
         public event Action OnZeitGestartet;
         public event Action OnZeitGestoppt;
+        public event Action EffektiveSpielzeitVisibilityChanged;
         public TimerStore(int duration, SpielanzeigeViewModel viewModel)
         {
             _viewModel = viewModel;
@@ -69,6 +71,7 @@ namespace Umsetzung_III
         {
             _minute++;
             SpielzeitChanged();
+            CheckEffektiveSpielzeit();
         }
         public void MinuteMinusOne()
         {
@@ -76,6 +79,7 @@ namespace Umsetzung_III
             {
                 _minute--;
                 SpielzeitChanged();
+                CheckEffektiveSpielzeit();
             }
         }
 
@@ -83,7 +87,7 @@ namespace Umsetzung_III
         {
             if(_sekunde == 0)
             {
-                _minute--;
+                MinuteMinusOne();
                 _sekunde = 59;
             }
             else
@@ -97,6 +101,19 @@ namespace Umsetzung_III
             }
 
             SpielzeitChanged();
+        }
+
+        private void CheckEffektiveSpielzeit()
+        {
+            if(_minute < 3)
+            {
+                EffektiveSpielzeitVisibility = true;
+            }
+            else
+            {
+                EffektiveSpielzeitVisibility = false;
+            }
+            EffektiveSpielzeitVisibilityChanged();
         }
 
         private void SpielzeitAbgelaufen()
@@ -132,6 +149,10 @@ namespace Umsetzung_III
         private void ZeitGestartet()
         {
             OnZeitGestartet?.Invoke();
+        }
+        private void EffektiveSpielzeitChanged()
+        {
+            EffektiveSpielzeitVisibilityChanged?.Invoke();
         }
     }
 }

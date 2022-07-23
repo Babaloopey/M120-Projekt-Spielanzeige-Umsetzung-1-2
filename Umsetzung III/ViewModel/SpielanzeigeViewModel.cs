@@ -23,6 +23,7 @@ namespace Umsetzung_III
         // Properties, die von der View abgefragt werden, um Buttons zu verstecken/ anzuzeigen
         public bool ButtonVisibilityStart => _timerStore.ButtonVisibilityStart;
         public bool ButtonVisibilityStop => !_timerStore.ButtonVisibilityStart;
+        public bool EffektiveSpielzeitVisibility => _timerStore.EffektiveSpielzeitVisibility;
 
         public bool ButtonVisibilityHeimStrafe => _strafenHeim.ButtonVisibilityStrafe;
         public bool ButtonVisibilityHeimReset => !_strafenHeim.ButtonVisibilityStrafe;
@@ -151,6 +152,7 @@ namespace Umsetzung_III
             // EventBinding
             _timerStore.OnSpielzeitChanged += TimerStore_SpielzeitChanged;
             _timerStore.OnButtonVisibilityChanged += TimerStore_ButtonVisibilityChanged;
+            _timerStore.EffektiveSpielzeitVisibilityChanged += TimerStore_EffektiveSpielzeitVisibilityChanged;
             _timerStore.OnZeitGestoppt += TimerStore_ZeitGestoppt;
             _timerStore.OnZeitGestartet += TimerStore_ZeitGestartet;
 
@@ -202,6 +204,10 @@ namespace Umsetzung_III
         {
             OnPropertyChanged("ButtonVisibilityStart");
             OnPropertyChanged("ButtonVisibilityStop");
+        }
+        private void TimerStore_EffektiveSpielzeitVisibilityChanged()
+        {
+            OnPropertyChanged("EffektiveSpielzeitVisibility");
         }
         private void TimerStore_ZeitGestoppt()
         {
