@@ -58,7 +58,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               FontSize="50"
+                               FontSize="60"
                                VerticalAlignment="Center"
                                Foreground="#2D2D2D"
                                HorizontalAlignment="Center"
@@ -76,7 +76,7 @@
                                Text="{Binding Halbzeit}" />
 
                     <TextBlock Grid.Column="2"
-                               FontSize="50"
+                               FontSize="60"
                                VerticalAlignment="Center"
                                Foreground="#2D2D2D"
                                HorizontalAlignment="Center"

@@ -14,6 +14,7 @@ namespace Umsetzung_III
         private int _sekunde;
         private int _minute;
         private readonly int _duration;
+        private int _timerIterations = 0;
 
         public bool ButtonVisibilityStart;
         public bool EffektiveSpielzeitVisibility;
@@ -29,7 +30,7 @@ namespace Umsetzung_III
             _viewModel = viewModel;
             _duration = duration;
 
-            _timer = new Timer(1000);
+            _timer = new Timer(100);
             _timer.Elapsed += Timer_Elapsed;
 
             _sekunde = 0;
@@ -85,7 +86,19 @@ namespace Umsetzung_III
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if(_sekunde == 0)
+            _timerIterations++;
+
+            if(_timerIterations >= 10)
+            {
+               CountOneSecond();
+            }
+        }
+
+        private void CountOneSecond()
+        {
+            _timerIterations = 0;
+
+            if (_sekunde == 0)
             {
                 MinuteMinusOne();
                 _sekunde = 59;
@@ -95,7 +108,7 @@ namespace Umsetzung_III
                 _sekunde--;
             }
 
-            if(_minute == 0 && _sekunde == 0)
+            if (_minute == 0 && _sekunde == 0)
             {
                 SpielzeitAbgelaufen();
             }
@@ -105,7 +118,7 @@ namespace Umsetzung_III
 
         private void CheckEffektiveSpielzeit()
         {
-            if(_minute < 3)
+            if(_minute < 3 && _viewModel.Halbzeit==2)
             {
                 EffektiveSpielzeitVisibility = true;
             }
@@ -113,7 +126,7 @@ namespace Umsetzung_III
             {
                 EffektiveSpielzeitVisibility = false;
             }
-            EffektiveSpielzeitVisibilityChanged();
+            EffektiveSpielzeitChanged();
         }
 
         private void SpielzeitAbgelaufen()
