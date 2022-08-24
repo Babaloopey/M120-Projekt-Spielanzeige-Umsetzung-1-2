@@ -10,22 +10,19 @@ namespace Umsetzung_III
 {
     public class StrafenStore
     {
-        private readonly Timer _timer;
-        private int _sekunde;
-        private int _minute;
-        public string Strafzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
+        private readonly SpielanzeigeViewModel _spielanzeigeViewModel;
+
+        private int _strafMinute;
+        private int _strafSekunde;
+        public string Strafzeit => _strafMinute.ToString("00") + ":" + _strafSekunde.ToString("00");
         public bool ButtonVisibilityStrafe;
 
         public event Action OnStrafzeitChanged;
         public event Action OnButtonVisibilityChanged;
 
-        public StrafenStore()
+        public StrafenStore(SpielanzeigeViewModel spielanzeigeviewModel)
         {
-            _timer = new Timer(1000);
-            _timer.Elapsed += Timer_Elapsed;
-
-            _sekunde = 0;
-            _minute = 0;
+            _spielanzeigeViewModel = spielanzeigeviewModel;
 
             ButtonVisibilityStrafe = true;
             ButtonVisibilityChanged();
@@ -36,75 +33,51 @@ namespace Umsetzung_III
             switch (strafe)
             {
                 case Strafe.Zwei:
-                    _minute = 2;
+                    _strafMinute = _spielanzeigeViewModel.SpielMinute - 2;
                     break;
                 case Strafe.Fuenf:
-                    _minute = 5;
+                    _strafMinute = _spielanzeigeViewModel.SpielMinute - 5;
                     break;
                 case Strafe.Zehn:
-                    _minute = 10;
+                    _strafMinute = _spielanzeigeViewModel.SpielMinute - 10;
                     break;
             }
-            StrafzeitChanged();
 
-            _timer.Start();
+            if(_strafMinute < 0)
+            {
+                _strafMinute = 20 + _strafMinute;
+            }
+
+            _strafSekunde = _spielanzeigeViewModel.SpielSekunde;
+
+            StrafzeitChanged();
 
             ButtonVisibilityStrafe = false;
             ButtonVisibilityChanged();
 
         }
 
-        public void Resume()
+        public void CheckIfStrafeStillActive()
         {
-            if(_minute > 0 || _sekunde > 0)
+            if(_strafMinute == _spielanzeigeViewModel.SpielMinute && _strafSekunde == _spielanzeigeViewModel.SpielSekunde)
             {
-                _timer.Start();
+                Reset();
             }
-            
-        }
-        public void Stop()
-        {
-            _timer.Stop();
         }
         public void Reset()
         {
-            _timer.Stop();
-            _minute = 0;
-            _sekunde = 0;
+            Timer wartezeit = new Timer(3000);
+            wartezeit.Start();
+            wartezeit.Elapsed += (sender, args) =>
+            {
+
+                _strafMinute = 0;
+            _strafSekunde = 0;
             StrafzeitChanged();
 
             ButtonVisibilityStrafe = true;
             ButtonVisibilityChanged();
-        }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (_sekunde == 0)
-            {
-                _minute--;
-                _sekunde = 59;
-            }
-            else
-            {
-                _sekunde--;
-            }
-
-            if (_minute == 0 && _sekunde == 0)
-            {
-                StrafzeitAbgelaufen();
-            }
-
-            StrafzeitChanged();
-        }
-
-        private void StrafzeitAbgelaufen()
-        {
-            Stop();
-            Timer wartezeit = new Timer(5000);
-            wartezeit.Start();
-            wartezeit.Elapsed += (sender, args) =>
-            {
-                Reset();
                 wartezeit.Dispose();
             };
         }

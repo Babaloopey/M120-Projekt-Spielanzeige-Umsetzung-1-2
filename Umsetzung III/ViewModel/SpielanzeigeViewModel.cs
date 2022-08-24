@@ -34,6 +34,10 @@ namespace Umsetzung_III
         public string Spielzeit
             { get { return _timerStore.Spielzeit; }
         }
+        public int SpielMinute
+        { get { return _timerStore.SpielMinute; } }
+        public int SpielSekunde
+        { get { return _timerStore.SpielSekunde; } }
         public string HeimTeamStrafe
         {
             get { return _strafenHeim.Strafzeit; }
@@ -146,15 +150,14 @@ namespace Umsetzung_III
             // Initialisierung des Models und der Stores
             _spielanzeige = new SpielanzeigeModel();
             _timerStore = new TimerStore(20, this);
-            _strafenGast = new StrafenStore();
-            _strafenHeim = new StrafenStore();
+            _strafenGast = new StrafenStore(this);
+            _strafenHeim = new StrafenStore(this);
 
             // EventBinding
             _timerStore.OnSpielzeitChanged += TimerStore_SpielzeitChanged;
             _timerStore.OnButtonVisibilityChanged += TimerStore_ButtonVisibilityChanged;
             _timerStore.EffektiveSpielzeitVisibilityChanged += TimerStore_EffektiveSpielzeitVisibilityChanged;
-            _timerStore.OnZeitGestoppt += TimerStore_ZeitGestoppt;
-            _timerStore.OnZeitGestartet += TimerStore_ZeitGestartet;
+            _timerStore.OnTimerElapsed += TimerStore_TimerElapsed;
 
             _strafenHeim.OnStrafzeitChanged += StrafenHeim_StrafzeitChanged;
             _strafenHeim.OnButtonVisibilityChanged += StrafenHeim_ButtonVisibilityChanged;
@@ -209,16 +212,11 @@ namespace Umsetzung_III
         {
             OnPropertyChanged("EffektiveSpielzeitVisibility");
         }
-        private void TimerStore_ZeitGestoppt()
-        {
-            _strafenHeim.Stop();
-            _strafenGast.Stop();
-        }
-        private void TimerStore_ZeitGestartet()
-        {
-            _strafenHeim.Resume();
-            _strafenGast.Resume();
 
+        private void TimerStore_TimerElapsed()
+        {
+            _strafenGast.CheckIfStrafeStillActive();
+            _strafenHeim.CheckIfStrafeStillActive();
         }
 
         private void StrafenHeim_StrafzeitChanged()

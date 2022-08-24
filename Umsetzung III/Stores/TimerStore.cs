@@ -19,12 +19,13 @@ namespace Umsetzung_III
         public bool ButtonVisibilityStart;
         public bool EffektiveSpielzeitVisibility;
         public string Spielzeit => _minute.ToString("00") + ":" + _sekunde.ToString("00");
+        public int SpielMinute => _minute;
+        public int SpielSekunde => _sekunde;
 
         public event Action OnSpielzeitChanged;
         public event Action OnButtonVisibilityChanged;
-        public event Action OnZeitGestartet;
-        public event Action OnZeitGestoppt;
         public event Action EffektiveSpielzeitVisibilityChanged;
+        public event Action OnTimerElapsed;
         public TimerStore(int duration, SpielanzeigeViewModel viewModel)
         {
             _viewModel = viewModel;
@@ -42,7 +43,7 @@ namespace Umsetzung_III
         public void Start()
         {
             _timer.Start();
-            ZeitGestartet();
+
             SpielzeitChanged();
 
             ButtonVisibilityStart = false;
@@ -51,7 +52,7 @@ namespace Umsetzung_III
         public void Stop()
         {
             _timer.Stop();
-            ZeitGestoppt();
+
             SpielzeitChanged();
 
 
@@ -87,6 +88,7 @@ namespace Umsetzung_III
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _timerIterations++;
+            TimerElapsed();
 
             if(_timerIterations >= 10)
             {
@@ -155,17 +157,14 @@ namespace Umsetzung_III
         {
             OnButtonVisibilityChanged?.Invoke();
         }
-        private void ZeitGestoppt()
-        {
-            OnZeitGestoppt?.Invoke();
-        }
-        private void ZeitGestartet()
-        {
-            OnZeitGestartet?.Invoke();
-        }
+      
         private void EffektiveSpielzeitChanged()
         {
             EffektiveSpielzeitVisibilityChanged?.Invoke();
+        }
+        private void TimerElapsed()
+        {
+            OnTimerElapsed?.Invoke();
         }
     }
 }
