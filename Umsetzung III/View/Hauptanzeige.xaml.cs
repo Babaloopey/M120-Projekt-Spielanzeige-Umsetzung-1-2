@@ -27,7 +27,7 @@ namespace Umsetzung_III
 
         private void SetWindowToFullScreen(object sender, MouseButtonEventArgs e)
         {
-            if(this.WindowState != WindowState.Maximized)
+            if (this.WindowState != WindowState.Maximized)
             {
                 this.WindowState = WindowState.Maximized;
             }
@@ -39,14 +39,32 @@ namespace Umsetzung_III
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
+
+            this.WindowStyle = WindowStyle.None;
+
             if (this.WindowState == WindowState.Maximized)
             {
-                this.WindowStyle = WindowStyle.None;
+                SetWindowToTrueFullScreen();
             }
-            else
+            else if(this.WindowState == WindowState.Normal)
             {
-                this.WindowStyle = WindowStyle.SingleBorderWindow;
+                SetWindowToNormalScreen();
             }
+        }
+
+        private void SetWindowToTrueFullScreen()
+        {
+            this.Visibility = Visibility.Collapsed;
+            this.Topmost = true;
+            this.WindowState = WindowState.Maximized;
+            this.WindowStyle = WindowStyle.None;
+            this.Visibility = Visibility.Visible;
+        }
+
+        private void SetWindowToNormalScreen()
+        {
+            this.WindowState = WindowState.Normal;
+            this.WindowStyle = WindowStyle.SingleBorderWindow;
         }
     }
 }

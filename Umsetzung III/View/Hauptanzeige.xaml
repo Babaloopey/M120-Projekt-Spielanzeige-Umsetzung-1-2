@@ -12,7 +12,7 @@
         MouseDoubleClick="SetWindowToFullScreen"
         StateChanged="Window_StateChanged"
         Icon="/View/STV_Logo.jpg"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         >
 
     <Window.Resources>
