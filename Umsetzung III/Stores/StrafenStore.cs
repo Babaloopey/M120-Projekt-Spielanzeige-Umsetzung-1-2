@@ -16,6 +16,7 @@ namespace Umsetzung_III
         private int _strafSekunde;
         public string Strafzeit => _strafMinute.ToString("00") + ":" + _strafSekunde.ToString("00");
         public bool ButtonVisibilityStrafe;
+        public bool StrafeIsRunning => !ButtonVisibilityStrafe;
 
         public event Action OnStrafzeitChanged;
         public event Action OnButtonVisibilityChanged;
@@ -61,25 +62,24 @@ namespace Umsetzung_III
         {
             if(_strafMinute == _spielanzeigeViewModel.SpielMinute && _strafSekunde == _spielanzeigeViewModel.SpielSekunde)
             {
-                Reset();
+            Timer wartezeit = new Timer(3000);
+            wartezeit.Start();
+                wartezeit.Elapsed += (sender, args) =>
+                {
+
+                    Reset();
+                    wartezeit.Dispose();
+                };
             }
         }
         public void Reset()
         {
-            Timer wartezeit = new Timer(3000);
-            wartezeit.Start();
-            wartezeit.Elapsed += (sender, args) =>
-            {
-
-                _strafMinute = 0;
+            _strafMinute = 0;
             _strafSekunde = 0;
             StrafzeitChanged();
 
             ButtonVisibilityStrafe = true;
-            ButtonVisibilityChanged();
-
-                wartezeit.Dispose();
-            };
+            ButtonVisibilityChanged();   
         }
 
         private void StrafzeitChanged()

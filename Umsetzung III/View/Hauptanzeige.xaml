@@ -132,8 +132,8 @@
                     <Image Grid.Column="2"
                            Grid.ColumnSpan="3"
                            Source="/View/STV_Logo.jpg"
-                           Opacity="0.2"
-                           Margin="60,0,0,0"/>
+                           Margin="60,0,0,0"
+                           Visibility="{Binding Path=LogoVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
 
 

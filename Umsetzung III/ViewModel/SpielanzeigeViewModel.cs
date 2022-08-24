@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Umsetzung_III.Stores;
 using static Umsetzung_III.Actions;
 
 namespace Umsetzung_III
@@ -19,6 +20,7 @@ namespace Umsetzung_III
         private readonly TimerStore _timerStore;
         private readonly StrafenStore _strafenHeim;
         private readonly StrafenStore _strafenGast;
+        private readonly LogoStore _logoStore;
 
         // Properties, die von der View abgefragt werden, um Buttons zu verstecken/ anzuzeigen
         public bool ButtonVisibilityStart => _timerStore.ButtonVisibilityStart;
@@ -29,6 +31,7 @@ namespace Umsetzung_III
         public bool ButtonVisibilityHeimReset => !_strafenHeim.ButtonVisibilityStrafe;
         public bool ButtonVisibilityGastStrafe => _strafenGast.ButtonVisibilityStrafe;
         public bool ButtonVisibilityGastReset => !_strafenGast.ButtonVisibilityStrafe;
+        public bool LogoVisibility => _logoStore.LogoVisibility;
 
         // Properties, die von der View abgefragt werden, um Informationen darzustellen
         public string Spielzeit
@@ -45,6 +48,14 @@ namespace Umsetzung_III
         public string GastTeamStrafe
         {
             get { return _strafenGast.Strafzeit; }
+        }
+        public bool HeimTeamStrafeRunning
+        {
+            get { return _strafenHeim.StrafeIsRunning; }
+        }
+        public bool GastTeamStrafeRunning
+        {
+            get { return _strafenGast.StrafeIsRunning; }
         }
         public int Halbzeit
         {
@@ -152,6 +163,7 @@ namespace Umsetzung_III
             _timerStore = new TimerStore(20, this);
             _strafenGast = new StrafenStore(this);
             _strafenHeim = new StrafenStore(this);
+            _logoStore = new LogoStore(this);
 
             // EventBinding
             _timerStore.OnSpielzeitChanged += TimerStore_SpielzeitChanged;
@@ -164,6 +176,8 @@ namespace Umsetzung_III
 
             _strafenGast.OnStrafzeitChanged += StrafenGast_StrafzeitChanged;
             _strafenGast.OnButtonVisibilityChanged += StrafenGast_ButtonVisibilityChanged;
+
+            _logoStore.OnLogoVisibilityChanged += LogoStore_LogoVisibilityChanged; ;
 
             // Zuteilung fuer Buttons
             // Buttons fuer die Kontrolle des Punktestandes
@@ -227,6 +241,7 @@ namespace Umsetzung_III
         {
                 OnPropertyChanged("ButtonVisibilityHeimStrafe");
                 OnPropertyChanged("ButtonVisibilityHeimReset");
+                _logoStore.CheckIfLogoMustBeVisible();
         }
 
         private void StrafenGast_StrafzeitChanged()
@@ -237,6 +252,12 @@ namespace Umsetzung_III
         {
             OnPropertyChanged("ButtonVisibilityGastStrafe");
             OnPropertyChanged("ButtonVisibilityGastReset");
+            _logoStore.CheckIfLogoMustBeVisible();
+
+        }
+        private void LogoStore_LogoVisibilityChanged()
+        {
+            OnPropertyChanged("LogoVisibility");
         }
     }
 }
